@@ -21,29 +21,42 @@
 
 <body>
     <h1>Job Application Tracker: </h1>
-    
-    <ul class="jobTitles">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].job %></span>
-                <span class='completed'><%= items[i].role %></span>
-                <span class='completed'><%= items[i].date %></span>
-                <span class='completed'><%= items[i].status %></span>
-                <span class='completed'><%= items[i].notes %></span>
-                <span class='completed'><%= items[i].spark %></span>
-            <% }else{ %>
-                <span><%= items[i].job %></span>
-                <span><%= items[i].role %></span>
-                <span><%= items[i].date %></span>
-                <span><%= items[i].status %></span>
-                <span><%= items[i].notes %></span>
-                <span><%= items[i].spark %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Role</th>
+                        <th>Date Applied</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                        <th>Spark</th>
+                    </tr>
+                </thead>
+                <tbody class="jobTitles">
+                <% for(let i=0; i < items.length; i++) {%>
+                    <tr class="item">
+                        <% if(items[i].completed === true) {%>
+                        <td class='completed'><%= items[i].job %></td>    
+                        <td class='completed'><%= items[i].role %></td>
+                        <td class='completed'><%= items[i].date %></td>
+                        <td class='completed'><%= items[i].status %></td>
+                        <td class='completed'><%= items[i].notes %></td>
+                        <td class='completed'><%= items[i].spark %></td>
+                        <% }else{ %>
+                        <td ><%= items[i].job %></td>
+                        <td ><%= items[i].role %></td>
+                        <td ><%= items[i].date %></td>
+                        <td ><%= items[i].status %></td>
+                        <td ><%= items[i].notes %></td>
+                        <td ><%= items[i].spark %></td>
+                        <% } %>    
+                        <td class='fa fa-trash'></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
     <h2>Left to Apply Reach Out To: <%= left %></h2>
 
     <h2>Add A Position:</h2>

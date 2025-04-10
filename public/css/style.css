@@ -5,3 +5,7 @@ h1{
     color: gray;
     text-decoration: line-through;
 }
+
+table, th, td {
+    border: 1px solid;
+  }
