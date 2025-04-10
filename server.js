@@ -8,7 +8,7 @@ require('dotenv').config()
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = 'movietracker'
+    dbName = 'jobtracker'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -23,9 +23,9 @@ app.use(express.json())
 
 app.get('/',async (request, response)=>{
 
-    db.collection('movies').find().toArray()
+    db.collection('jobs').find().toArray()
     .then(data => {
-        db.collection('movies').countDocuments({completed: false})
+        db.collection('jobs').countDocuments({completed: false})
         .then(itemsLeft => {
             response.render('index.ejs', { items: data, left: itemsLeft })
         })
@@ -33,17 +33,31 @@ app.get('/',async (request, response)=>{
     .catch(error => console.error(error))
 })
 
-app.post('/addfilm', (request, response) => {
-    db.collection('movies').insertOne({thing: request.body.filmTitle, progress: request.body.filmProgress, completed: false})
+app.post('/addjob', (request, response) => {
+    db.collection('jobs').insertOne({
+        job: request.body.jobTitle, 
+        role: request.body.jobRole,
+        date: request.body.jobDate, 
+        status: request.body.jobStatus,
+        notes: request.body.jobNotes, 
+        spark: request.body.jobSpark,
+        completed: false})
     .then(result => {
-        console.log('Film Added')
+        console.log('job Added')
         response.redirect('/')
     })
     .catch(error => console.error(error))
 })
 
 app.put('/markComplete', (request, response) => {
-    db.collection('movies').updateOne({thing: request.body.itemFromJS, progress: request.body.filmProgressJS},{
+    db.collection('jobs').updateOne({
+        job: request.body.jobTitleJS, 
+        role: request.body.jobRoleJS,
+        date: request.body.jobDateJS, 
+        status: request.body.jobStatusJS,
+        notes: request.body.jobNotesJS, 
+        spark: request.body.jobSparkJS,
+    },{
         $set: {
             completed: true
           }
@@ -61,7 +75,14 @@ app.put('/markComplete', (request, response) => {
 })
 
 app.put('/markUnComplete', (request, response) => {
-    db.collection('movies').updateOne({thing: request.body.itemFromJS, progress: request.body.filmProgressJS},{
+    db.collection('jobs').updateOne({
+        job: request.body.jobTitleJS, 
+        role: request.body.jobRoleJS,
+        date: request.body.jobDateJS, 
+        status: request.body.jobStatusJS,
+        notes: request.body.jobNotesJS, 
+        spark: request.body.jobSparkJS,
+    },{
         $set: {
             completed: false
           }
@@ -77,10 +98,17 @@ app.put('/markUnComplete', (request, response) => {
 })
 
 app.delete('/deleteItem', (request, response) => {
-    db.collection('movies').deleteOne({thing: request.body.itemFromJS, progress: request.body.filmProgressJS})
+    db.collection('jobs').deleteOne({
+        job: request.body.jobTitleJS, 
+        role: request.body.jobRoleJS,
+        date: request.body.jobDateJS, 
+        status: request.body.jobStatusJS,
+        notes: request.body.jobNotesJS, 
+        spark: request.body.jobSparkJS,
+    })
     .then(result => {
-        console.log('Film Deleted')
-        response.json('film Deleted')
+        console.log('Job Deleted')
+        response.json('Job Deleted')
     })
     .catch(error => console.error(error))
 })

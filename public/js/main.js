@@ -15,15 +15,23 @@ Array.from(itemCompleted).forEach((element) => {
 })
 
 async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    const progText = this.parentNode.childNodes[3].innerText
+    const titleText = this.parentNode.childNodes[1].innerText
+    const roleText = this.parentNode.childNodes[3].innerText
+    const dateText = this.parentNode.childNodes[5].innerText
+    const statusText = this.parentNode.childNodes[7].innerText
+    const notesText = this.parentNode.childNodes[9].innerText
+    const sparkText = this.parentNode.childNodes[11].innerText
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'itemFromJS': itemText,
-              'filmProgressJS': progText
+              'jobTitleJS': titleText,
+              'jobRoleJS': roleText,
+              'jobDateJS': dateText,
+              'jobStatusJS': statusText,
+              'jobNotesJS': notesText,
+              'jobSparkJS': sparkText
             })
           })
         const data = await response.json()
@@ -36,15 +44,23 @@ async function deleteItem(){
 }
 
 async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    const progText = this.parentNode.childNodes[3].innerText
+    const titleText = this.parentNode.childNodes[1].innerText
+    const roleText = this.parentNode.childNodes[3].innerText
+    const dateText = this.parentNode.childNodes[5].innerText
+    const statusText = this.parentNode.childNodes[7].innerText
+    const notesText = this.parentNode.childNodes[9].innerText
+    const sparkText = this.parentNode.childNodes[11].innerText
     try{
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                'itemFromJS': itemText,
-                'filmProgressJS': progText
+                'jobTitleJS': titleText,
+                'jobRoleJS': roleText,
+                'jobDateJS': dateText,
+                'jobStatusJS': statusText,
+                'jobNotesJS': notesText,
+                'jobSparkJS': sparkText
             })
           })
         const data = await response.json()
@@ -65,7 +81,7 @@ async function markUnComplete(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 'itemFromJS': itemText,
-                'filmProgressJS': progText
+                'jobProgressJS': progText
             })
           })
         const data = await response.json()
