@@ -26,19 +26,19 @@
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].firm %></span>
-                <span class='completed'><%= items[i].jobrole %></span>
+                <span class='completed'><%= items[i].job %></span>
+                <span class='completed'><%= items[i].role %></span>
                 <span class='completed'><%= items[i].date %></span>
-                <span class='completed'><%= items[i].state %></span>
-                <span class='completed'><%= items[i].remarks %></span>
-                <span class='completed'><%= items[i].common %></span>
+                <span class='completed'><%= items[i].status %></span>
+                <span class='completed'><%= items[i].notes %></span>
+                <span class='completed'><%= items[i].spark %></span>
             <% }else{ %>
-                <span><%= items[i].firm %></span>
-                <span><%= items[i].jobrole %></span>
+                <span><%= items[i].job %></span>
+                <span><%= items[i].role %></span>
                 <span><%= items[i].date %></span>
-                <span><%= items[i].state %></span>
-                <span><%= items[i].remarks %></span>
-                <span><%= items[i].common %></span>
+                <span><%= items[i].status %></span>
+                <span><%= items[i].notes %></span>
+                <span><%= items[i].spark %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
@@ -49,12 +49,12 @@
     <h2>Add A Position:</h2>
 
     <form action="/addjob" method="POST">
-        <input type="text" placeholder="Company" name="company">
-        <input type="text" placeholder="Role" name="role">
-        <input type="text" placeholder="Date Applied" name="dateApplied">
-        <input type="text" placeholder="Status" name="status">
-        <input type="text" placeholder="Notes" name="notes">
-        <input type="text" placeholder="Spark" name="spark">
+        <input type="text" placeholder="Company" name="jobTitle">
+        <input type="text" placeholder="Role" name="jobRole">
+        <input type="text" placeholder="Date Applied" name="jobDate">
+        <input type="text" placeholder="Status" name="jobStatus">
+        <input type="text" placeholder="Notes" name="jobNotes">
+        <input type="text" placeholder="Spark" name="jobSpark">
         <input type="submit">
     </form>
 
