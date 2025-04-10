@@ -28,7 +28,15 @@
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
                 <span class='completed'><%= items[i].progress %></span>
+                <span class='completed'><%= items[i].thing %></span>
+                <span class='completed'><%= items[i].progress %></span>
+                <span class='completed'><%= items[i].thing %></span>
+                <span class='completed'><%= items[i].progress %></span>
             <% }else{ %>
+                <span><%= items[i].thing %></span>
+                <span><%= items[i].progress %></span>
+                <span><%= items[i].thing %></span>
+                <span><%= items[i].progress %></span>
                 <span><%= items[i].thing %></span>
                 <span><%= items[i].progress %></span>
             <% } %>    
@@ -41,8 +49,12 @@
     <h2>Add A Movie:</h2>
 
     <form action="/addfilm" method="POST">
-        <input type="text" placeholder="Movie to Watch" name="filmTitle">
-        <input type="text" placeholder="Progress" name="filmProgress">
+        <input type="text" placeholder="Company" name="company">
+        <input type="text" placeholder="Role" name="role">
+        <input type="text" placeholder="Date Applied" name="dateApplied">
+        <input type="text" placeholder="Status" name="status">
+        <input type="text" placeholder="Notes" name="notes">
+        <input type="text" placeholder="Spark" name="spark">
         <input type="submit">
     </form>
 
